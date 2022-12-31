@@ -1,8 +1,7 @@
-//NOM prénom étudiant 1 : JAMOIS Mathis
-//NOM prénom étudiant 2 : MEDEWOU Selly
+
 
 #include "SDL.h"
-#include "maSDL.h"    //bibliothèque avec des fonction d'affichage pour le jeu 2048
+#include "maSDL.h"    //bibliothÃ¨que avec des fonction d'affichage pour le jeu 2048
 #include "clashloyal.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,7 +26,7 @@ int main(int argc, char* argv[])
         SDL_WINDOW_SHOWN
     );
 
-    SDL_Surface* pWinSurf = SDL_GetWindowSurface(pWindow);  //le sprite qui couvre tout l'écran
+    SDL_Surface* pWinSurf = SDL_GetWindowSurface(pWindow);  //le sprite qui couvre tout l'Ã©cran
     SDL_Surface* pSpriteTour= SDL_LoadBMP("./data/Tour.bmp");  //indice 0 dans tabSprite (via l'enum TuniteDuJeu)
     SDL_Surface* pSpriteTourRoi = SDL_LoadBMP("./data/TourRoi.bmp"); //indice 1
     SDL_Surface* pSpriteArcher = SDL_LoadBMP("./data/ArcherRouge.bmp"); //indice 2
@@ -46,8 +45,8 @@ int main(int argc, char* argv[])
     //indice dans la table TabSpritePlayer2...
 
 
-    // ASTUCE : on stocke le sprite d'une unité à l'indice de son nom dans le type enum TuniteDuJeu, dans le tableau TabSprite
-    // SAUF pour l'Eau, l''herbe et le pont qui apparaitront en l absence d'unité (NULL dans le plateau) et en fonction de certains indices x,y définissant le chemin central
+    // ASTUCE : on stocke le sprite d'une unitÃ© Ã  l'indice de son nom dans le type enum TuniteDuJeu, dans le tableau TabSprite
+    // SAUF pour l'Eau, l''herbe et le pont qui apparaitront en l absence d'unitÃ© (NULL dans le plateau) et en fonction de certains indices x,y dÃ©finissant le chemin central
 
 
     SDL_Surface* TabSprite[10]={pSpriteTour,pSpriteTourRoi,pSpriteArcher,pSpriteChevalier,pSpriteDragon,pSpriteGargouille,pSpriteEau,pSpriteHerbe,pSpritePont,pSpriteTerre};
@@ -56,7 +55,7 @@ int main(int argc, char* argv[])
 
     SDL_Surface* TabSpritePlayer_2[10]={pSpriteTour,pSpriteTourRoi,pSpriteArcherBleu,pSpriteChevalierBleu,pSpriteDragonBleu,pSpriteGargouilleBleu,pSpriteEau,pSpriteHerbe,pSpritePont,pSpriteTerre};
 
-    if ( pSpriteTour )  //si le premier sprite a bien été chargé, on suppose que les autres aussi
+    if ( pSpriteTour )  //si le premier sprite a bien Ã©tÃ© chargÃ©, on suppose que les autres aussi
     {
         TplateauJeu jeu = AlloueTab2D(LARGEURJEU,HAUTEURJEU);
         initPlateauAvecNULL(jeu,LARGEURJEU,HAUTEURJEU);
@@ -77,12 +76,12 @@ int main(int argc, char* argv[])
 
         int elixirPlayer1=3, elixirPlayer2=3;// le nombre d'elixir au debut pour chaque joueur est de 3
 
-        //Les unités du joueur P1
+        //Les unitÃ©s du joueur P1
         AjouterUnite(&joueur_1,creeTour(5,3));
         AjouterUnite(&joueur_1,creeTourRoi(5,1));
 
 
-        //Les unités du joueur P2
+        //Les unitÃ©s du joueur P2
         AjouterUnite(&joueur_2,creeTour(5,15));
         AjouterUnite(&joueur_2,creeTourRoi(5,17));
 
@@ -116,7 +115,7 @@ int main(int argc, char* argv[])
 
                 randFstPlayer =rand()%2;/* cette variable prend une valeur entre 0 et 1*/
 
-                //elle nous permettra de gérer les phases de combats et de création d'unité pour qu'il n'y ait pas de joueur avantagé pendant ces phases-là
+                //elle nous permettra de gÃ©rer les phases de combats et de crÃ©ation d'unitÃ© pour qu'il n'y ait pas de joueur avantagÃ© pendant ces phases-lÃ 
 
 
                 //PHASE COMBAT...
@@ -208,7 +207,7 @@ int main(int argc, char* argv[])
 
                 //*******************************************************
 
-                //PHASE permettant d'arrêter le programme si l'un des joueurs a son tour de roi détruite...
+                //PHASE permettant d'arrÃªter le programme si l'un des joueurs a son tour de roi dÃ©truite...
 
                 if (tourRoiDetruite(joueur_2))
                 {
@@ -236,7 +235,7 @@ int main(int argc, char* argv[])
 
                 //*******************************************************
 
-                //Phase suppression des unités dont le pv est inférieur ou égale à 0 pour chacun des joueurs
+                //Phase suppression des unitÃ©s dont le pv est infÃ©rieur ou Ã©gale Ã  0 pour chacun des joueurs
 
                 joueur_2=SupprimerValuePvZero(joueur_2);
                 joueur_1=SupprimerValuePvZero(joueur_1);
@@ -247,7 +246,7 @@ int main(int argc, char* argv[])
 
                 //*******************************************************
 
-                //Remettre la propriété peut_attaquer à 1 pour tous les unités encore vivants...
+                //Remettre la propriÃ©tÃ© peut_attaquer Ã  1 pour tous les unitÃ©s encore vivants...
 
                 can_attack(joueur_1);
                 can_attack(joueur_2);
@@ -255,7 +254,7 @@ int main(int argc, char* argv[])
                 //*******************************************************
 
 
-                //AFFICHAGE DU JEU À CHAQUE tour...
+                //AFFICHAGE DU JEU Ã€ CHAQUE tour...
                 initPlateauAvecNULL(jeu,LARGEURJEU,HAUTEURJEU);
                 PositionnePlayerOnPlateau(joueur_1,jeu);
                 PositionnePlayerOnPlateau(joueur_2,jeu);
@@ -265,14 +264,14 @@ int main(int argc, char* argv[])
                 prepareAllSpriteDuJeu(jeu,LARGEURJEU,HAUTEURJEU,TabSprite,pWinSurf);
                 prepareSpriteplayer(jeu,TabSpritePlayer_2,pWinSurf,joueur_2);
                 maj_fenetre(pWindow);
-                SDL_Delay(taille);  //valeur du délai à modifier éventuellement
+                SDL_Delay(taille);  //valeur du dÃ©lai Ã  modifier Ã©ventuellement
 
                 //LECTURE DE CERTAINES TOUCHES POUR LANCER LES RESTAURATIONS ET SAUVEGARDES
                 const Uint8* pKeyStates = SDL_GetKeyboardState(NULL);
                 if ( pKeyStates[SDL_SCANCODE_V] ){
                         /* Ajouter vos appels de fonctions ci-dessous qd le joueur appuye sur V */
 
-                        //On vide les listes des joueurs 1 et 2 avant de load les unités du fichier de sauvegarde
+                        //On vide les listes des joueurs 1 et 2 avant de load les unitÃ©s du fichier de sauvegarde
 
                         //Debut Phase suppression
 
@@ -300,7 +299,7 @@ int main(int argc, char* argv[])
                 }
                 if ( pKeyStates[SDL_SCANCODE_C] ){
 
-                        //On vide les listes des joueurs 1 et 2 avant de load les unités du fichier de sauvegarde
+                        //On vide les listes des joueurs 1 et 2 avant de load les unitÃ©s du fichier de sauvegarde
 
                         //Debut phase suppression
 
@@ -315,7 +314,7 @@ int main(int argc, char* argv[])
 
                         //Fin phase load
 
-                        //Affichage du déroulement du jeu lors du load du dichier binaire
+                        //Affichage du dÃ©roulement du jeu lors du load du dichier binaire
 
                         Affiche_unite(joueur_1,0,&elixirPlayer1);
 
@@ -367,7 +366,7 @@ int main(int argc, char* argv[])
 
         //fin boucle du jeu
 
-        SDL_FreeSurface(pSpriteTour); // Libération de la ressource occupée par le sprite
+        SDL_FreeSurface(pSpriteTour); // LibÃ©ration de la ressource occupÃ©e par le sprite
         SDL_FreeSurface(pSpriteTourRoi);
         SDL_FreeSurface(pSpriteArcher);
         SDL_FreeSurface(pSpriteChevalier);
@@ -386,7 +385,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        fprintf(stdout,"Échec de chargement du sprite (%s)\n",SDL_GetError());
+        fprintf(stdout,"Ã‰chec de chargement du sprite (%s)\n",SDL_GetError());
     }
 
     SDL_DestroyWindow(pWindow);
